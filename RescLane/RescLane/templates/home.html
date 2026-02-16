@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rescue Lane</title>
+  <style>
+   *{
+    text-decoration:none;
+}
+.navbar{
+    background: blueviolet;font-family: calibri;padding-left: 15px;padding-right: 15px;
+}
+.navdiv{
+    display: flex;align-items: center;justify-content: space-between;
+}
+.logo{
+    font-size: 35px;font-weight: 600;color: white;
+}
+li{
+    list-style: none;display: inline-block;
+}
+li a{
+    color: white; font-size: 18px;font-weight: bold;margin-right: 25px;
+}
+li a:hover{
+    color:gray;
+    
+}
+body {
+    font-family: Arial, sans-serif;
+    background: url("{{ url_for('static', filename='breakdown_wallpaper.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+    .hero {
+      position: relative;
+      background: url("{{ url_for('static', filename='home.jpg') }}") center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-text {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px 50px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 50px 20px;
+      gap: 30px;
+      background-color: white;
+    }
+
+    .feature-box {
+      flex: 1 1 220px;
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .feature-box img {
+      width: 100%;
+      max-height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .feature-box h3 {
+      color: #4b0082;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      font-size: 15px;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+      }
+
+      .hero-text p {
+        font-size: 16px;
+      }
+    }
+   .feature-box {
+  flex: 1 1 220px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.feature-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+   
+     <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">Rescue Lane
+            </div>
+            <ul>
+               <li> <a href="/home"style="color: #FF0000; text-decoration: underline;">
+                    Home
+                   </a></li>
+                   <li><a  href="/customer">
+                    Customer
+                   </a></li>
+                   <li><a  href="/mechanic">
+                    Mechanics
+                   </a></li>
+                   
+                   <li><a  href="/About">
+                    About Us
+                   </a></li>
+                   <li><a  href="/contact"> Contact Us
+                </a></li>
+
+            </ul>
+        </div>
+    </nav>
+    
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to Rescue Lane</h1>
+      <p>Your trusted roadside assistance partner – anytime, anywhere.</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-box">
+      <img src="{{ url_for('static', filename='speed.jpg') }}" alt="Fast Service">
+      <h3>Fast & Reliable Service</h3>
+      <p>We ensure quick response times from verified professionals near you.</p>
+    </div>
+
+    <div class="feature-box">
+      <img src="{{ url_for('static', filename='mec.jpg') }}" alt="Skilled Mechanics">
+      <h3>Verified & Skilled Mechanics</h3>
+      <p>Our mechanics are background-checked and highly experienced.</p>
+    </div>
+
+    <div class="feature-box">
+      <img src="{{ url_for('static', filename='supp.jpg') }}" alt="Customer Support">
+      <h3>24/7 Customer Support</h3>
+      <p>We’re always here to help, no matter the time or place.</p>
+    </div>
+
+    <div class="feature-box">
+      <img src="{{ url_for('static', filename='easy.jpg') }}" alt="Easy Platform">
+      <h3>Easy-to-use Platform</h3>
+      <p>A user-friendly interface for both customers and mechanics.</p>
+    </div>
+  </section>
+
+</body>
+</html>

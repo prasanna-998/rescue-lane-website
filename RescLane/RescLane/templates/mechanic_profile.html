@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mechanic Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --bg-gradient: linear-gradient(to right, #e0eafc, #cfdef3);
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --label-color: #555;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 32px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .profile-card {
+            max-width: 600px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
+            animation: floatUp 1.2s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-field {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .profile-field strong {
+            color: var(--label-color);
+            display: inline-block;
+            width: 160px;
+        }
+
+        img {
+            display: block;
+            margin-top: 10px;
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            min-width: 150px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-back {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-back:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .btn-edit {
+            background-color: var(--success-color);
+        }
+
+        .btn-edit:hover {
+            background-color: #1e8e4f;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 20px;
+            }
+
+            .profile-field strong {
+                width: 100%;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mechanic Profile</h1>
+
+    <div class="profile-card">
+        <div class="profile-field"><strong>Name:</strong> {{ mechanic[0] }} {{ mechanic[1] }}</div>
+        <div class="profile-field"><strong>Address:</strong> {{ mechanic[2] }}</div>
+        <div class="profile-field"><strong>Skill:</strong> {{ mechanic[3] }}</div>
+        <div class="profile-field"><strong>Mobile:</strong> {{ mechanic[4] }}</div>
+        <div class="profile-field"><strong>Security Answer (Animal):</strong> {{ mechanic[5] }}</div>
+
+        {% if mechanic[6] %}
+        <div class="profile-field">
+            <strong>Document:</strong>
+            <img src="{{ url_for('static', filename='uploads/' + mechanic[6]) }}" alt="Document">
+        </div>
+        {% else %}
+        <div class="profile-field"><strong>Document:</strong> Not uploaded</div>
+        {% endif %}
+
+        <div class="button-group">
+            <a href="{{ url_for('m_dashboard') }}" class="btn btn-back">← Back to Dashboard</a>
+            <a href="{{ url_for('edit_mechanic_profile') }}" class="btn btn-edit">Edit Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request History</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f4f7f8;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.Accepted {
+    color: #28a745; /* Green */
+}
+
+.status.Rejected {
+    color: #dc3545; /* Red */
+}
+
+.status.Pending {
+    color: #ffc107; /* Yellow */
+}
+</style>
+</head>
+<body>
+    <h1>Your Request History</h1>
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Mechanic Name</th>
+                <th>User Name</th>
+                <th>Location</th>
+                <th>Vehicle Type</th>
+                <th>Complaint</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+            <tr>
+                
+                <td>{{ request[4] }} {{ request[5] }}</td>
+                <td>{{ request[6] }}</td>
+                <td>{{ request[1] }}</td>
+                <td>{{ request[2] }}</td>
+                <td>{{ request[3] }}</td>
+                <td>{{ request[7]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

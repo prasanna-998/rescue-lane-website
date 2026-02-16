@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Mechanic Service</title>
+    <style>
+ body {
+    margin: 0;
+    padding: 0;
+    background: url("{{ url_for('static', filename='breakdown_wallpaper.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    color: #000;
+}
+
+form {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* blur the background */
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select, input[type="text"], textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #000;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+button {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background: #ffc107;
+    color: #000;
+}
+
+.images2 {
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="back-button">← Back</button>
+    <h2>Request Mechanic Service</h2>
+    <form method="POST" action="/request_service">
+    <label for="mechanic">Select a mechanic:</label>
+    
+
+
+<select name="mechanic" id="mechanic" required onchange="showMechanicDetails()">
+    <option value="">--Choose a mechanic--</option>
+    {% for mechanic in mechanics %}
+        <option value="{{ mechanic[0] }}"
+                data-name="{{ mechanic[1] }} {{ mechanic[2] }}"
+                data-address="{{ mechanic[3] }}">
+            {{ mechanic[1] }} {{ mechanic[2] }}
+        </option>
+    {% endfor %}
+</select>
+<!-- rest of the form and JavaScript... -->
+<br><br>
+
+<!-- Placeholder for mechanic info -->
+<div id="mechanicDetails" style="display: none; border: 1px solid #ccc; padding: 10px;">
+    <strong>Name:</strong> <span id="mechName"></span><br>
+    <strong>Address:</strong> <span id="mechAddress"></span>
+</div><br>
+
+
+
+    <br><br>
+        <label for="location">Your Location:</label>
+        <input type="text" name="location" required><br><br>
+
+        <label for="vehicle_type">Vehicle Type:</label>
+        <select name="vehicle_type" id="vehicle_type">
+            <option value="">SELECT</option>
+            <option value="car">car</option>
+            <option value="bike">Bike</option>
+            <option value="truck">Truck</option>
+        </select><br><br>
+
+        <label for="complaint">Complaint:</label><br>
+        <textarea name="complaint" rows="4" cols="40" required></textarea><br><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+</body>
+
+
+<script>
+function showMechanicDetails() {
+    const select = document.getElementById("mechanic");
+    const selectedOption = select.options[select.selectedIndex];
+
+    const name = selectedOption.getAttribute("data-name");
+    const address = selectedOption.getAttribute("data-address");
+
+    if (name && address) {
+        document.getElementById("mechName").textContent = name;
+        document.getElementById("mechAddress").textContent = address;
+        document.getElementById("mechanicDetails").style.display = "block";
+    } else {
+        document.getElementById("mechanicDetails").style.display = "none";
+    }
+}
+</script>
+
+
+</html>

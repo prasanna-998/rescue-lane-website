@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Registration</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url("{{ url_for('static', filename='breakdown_wallpaper.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        font-family: sans-serif;
+        color: #000;
+    }
+    .b {
+        border: none;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.5);
+        color: none;
+        backdrop-filter: blur(10px);
+    }
+    #signup {
+        height: 850px; /* Increased height for extra field */
+    }
+    .loginbox {
+        width: 330px;
+        height: 550px; /* Increased height for extra field */
+        background-color: rgba(255, 255, 255, 0.5);
+        color: black;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+        padding: 70px 30px;
+        border-radius: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+    .images2 {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: calc(50% - 50px);
+    }
+    h1 {
+        margin: 0;
+        padding: 0 0 20px;
+        text-align: center;
+        font-size: 22px;
+    }
+    .loginbox p {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+    .loginbox input {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .loginbox input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        color: #000;
+        font-size: 16px;
+    }
+    .btn {
+        border: none;
+        outline: none;
+        height: 40px;
+        background: red;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .btn:hover {
+        cursor: pointer;
+        background: #ffc107;
+        color: #000;
+    }
+    .loginbox input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        background: red;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .loginbox input[type="submit"]:hover {
+        cursor: pointer;
+        background: #ffc107;
+        color: #000;
+    }
+    .logo {
+        font-style: italic;
+        font-family: al;
+    }
+    button {
+        display: inline-block;
+        background-color: #6c757d;
+        color: white;
+        padding: 8px 16px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 15px;
+    }
+    button:hover {
+        background-color: #5a6268;
+    }
+    .back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+}
+
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('mechanic') }}" class="back-btn">← Back</a>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li style="color: red;"><strong>{{ category }}:</strong> {{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% endwith %}
+
+    <div class="loginbox" id="signup">
+        <h1>Registration</h1>
+        <form action="/mechanic_register" method="POST" enctype="multipart/form-data">
+            <p>First Name</p>
+            <input type="text" name="fname" placeholder="Enter First Name" required>
+            
+            <p>Last Name</p>
+            <input type="text" name="lname" placeholder="Enter Last Name">
+
+            <p>Address</p>
+            <input type="text" name="address" placeholder="Enter Address" required>
+
+            <p>Skill</p>
+            <input type="text" name="skill" placeholder="Enter your Skill" required>
+
+            <p>Mobile No</p>
+            <input type="number" name="mobile" placeholder="Enter Mobile No" pattern="[0-9]{10}" required>
+
+            <p>Favorite Animal</p>
+            <input type="text" name="animal" placeholder="Enter Animal Name" required>
+
+            <p>Document</p>
+            <input type="file" name="document"required>
+
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <input type="submit" value="Create"><br><br>
+        </form>
+    </div>
+</body>
+</html>

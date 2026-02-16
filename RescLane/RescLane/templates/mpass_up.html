@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Set New Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        /* Reset and base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 360px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+            text-align: center;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 25px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="password"]:focus {
+            border-color: #28a745;
+            outline: none;
+            box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+
+        .flash-message {
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            background-color: #fdecea;
+            color: #b71c1c;
+            border-left: 4px solid #d32f2f;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 400px) {
+            form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <form method="post" action="/mpass_up">
+        <h2>Set New Password</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="flash-message">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <input type="hidden" name="mobile" value="{{ mobile }}">
+
+        <label for="password">New Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your new password" required>
+
+        <button type="submit">Change Password</button>
+    </form>
+
+</body>
+</html>

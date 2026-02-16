@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Search Mechanic</title>
+</head>
+<body>
+    <h1>Search Mechanic by ID and First Name</h1>
+
+<form method="POST" action="/search">
+    <label for="id">ID:</label>
+    <input type="number" id="id" name="id" required><br><br>
+
+    <label for="fname">First Name:</label>
+    <input list="fname-list" id="fname" name="fname" required>
+    <datalist id="fname-list">
+        {% for name in name_list %}
+            <option value="{{ name }}">
+        {% endfor %}
+    </datalist><br><br>
+
+    <button type="submit">Search</button>
+</form>
+
+
+    {% if mechanic %}
+    <h2>Mechanic Details:</h2>
+    <ul>
+        <li>ID: {{ mechanic[0] }}</li>
+        <li>First Name: {{ mechanic[1] }}</li>
+        <li>Last Name: {{ mechanic[2] }}</li>
+        <li>Address: {{ mechanic[3] }}</li>
+        <li>Skill: {{ mechanic[4] }}</li>
+        <li>Mobile: {{ mechanic[5] }}</li>
+        <li>Animal: {{ mechanic[6] }}</li>
+    </ul>
+    {% elif mechanic is not none %}
+    <p>No mechanic found with given ID and First Name.</p>
+    {% endif %}
+</body>
+</html>

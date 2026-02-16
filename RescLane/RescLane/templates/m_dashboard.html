@@ -1,0 +1,100 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mechanic Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+    padding: 0;
+    background: url("{{ url_for('static', filename='breakdown_wallpaper.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    color: #000;
+    }
+
+    .navbar {
+      background-color: #2c3e50;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar h2 {
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .section {
+      background: white;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .request, .history {
+      padding: 10px 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .accept-btn {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .reject-btn {
+      background-color: #e67e22;
+      color: white;
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h2>Mechanic Dashboard</h2>
+    <div class="nav-links">
+      <a href="/incoming_requests">Requests</a>
+      <a href="/mechanic_profile">View Profile</a>
+      <a href="/logt" class="logout-btn">Logout</a>
+      
+
+    </div>
+  </div>
+
+ 
+</body>
+</html>

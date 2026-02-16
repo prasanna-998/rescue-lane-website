@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit Mechanic Profile</title>
+    <style>
+        /* Base Reset & Font */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Make sure body and html fill full height and use flexbox for vertical centering */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    align-items: center;      /* center vertically */
+    background: #e6f0ff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Container card */
+.container {
+    width: 100%;
+    max-width: 480px;   /* max width */
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 85, 204, 0.15);
+}
+
+.container:hover {
+    box-shadow: 0 15px 40px rgba(0, 85, 204, 0.3);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #004080;
+    letter-spacing: 1px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #004080;
+    font-size: 14px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1.8px solid #b3c6ff;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    outline-offset: 2px;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+    border-color: #0059b3;
+    box-shadow: 0 0 8px rgba(0, 89, 179, 0.4);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px 0;
+    background: #0059b3;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 89, 179, 0.35);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #004080;
+    box-shadow: 0 7px 20px rgba(0, 64, 128, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+    .container {
+        margin: 20px 15px;
+        padding: 25px 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+    </style>
+  
+
+</head>
+<body>
+    <form method="post" >
+    <!-- Existing fields -->
+    <p>First Name</p>
+            <input type="text" name="fname" placeholder="Enter First Name"value="users[1]" required>
+            <p>Last Name</p>
+            <input type="text" name="lname" placeholder="Enter Last Name"value="users[2]" >
+            <p>Favorite Animal </p>
+            <input type="text" name="animal" placeholder="Enter Animal Name"value="users[3]" required>
+            <p>Email Id</p>
+            <input type="email" name="email" placeholder="Enter Email Id"value="users[4]" required>
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

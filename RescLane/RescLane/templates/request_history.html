@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request History</title>
+    <style>
+        /* Reset & base */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        h1 {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 2rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        table {
+            width: 100%;
+            max-width: 900px;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        thead th {
+            background-color: #7b5cff;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9ff;
+        }
+
+        tbody tr:hover {
+            background-color: #e1dbff;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Status colors with pills */
+        .status {
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: white;
+            user-select: none;
+        }
+
+        .Accepted {
+            background-color: #28a745; /* Green */
+        }
+
+        .Rejected {
+            background-color: #dc3545; /* Red */
+        }
+
+        .Pending {
+            background-color: #ffc107; /* Yellow */
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Your Request History</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mechanic Name</th>
+                    <th>Mobile Number</th>
+                    <th>Location</th>
+                    <th>Vehicle Type</th>
+                    <th>Complaint</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request[4] }} {{ request[5] }}</td>
+                    <td>{{ request[7] }}</td>
+                    <td>{{ request[1] }}</td>
+                    <td>{{ request[2] }}</td>
+                    <td>{{ request[3] }}</td>
+                    <td>
+                        <span class="status {{ request[6] | capitalize }}">
+                            {{ request[6] }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mechanic Requests</title>
+  <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 40px;
+    color: #333;
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 16px 20px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #0077b6;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  td {
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 15px;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .status {
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .status.Accepted {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+  }
+
+  .status.Rejected {
+    color: #c62828;
+    background-color: #fdecea;
+  }
+
+  .status.Pending {
+    color: #f9a825;
+    background-color: #fff8e1;
+  }
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .accept {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .reject {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  form {
+    display: inline;
+  }
+
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    th, td {
+      padding: 10px;
+    }
+
+    td {
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    td:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- templates/incoming_requests.html -->
+<h2>Incoming Service Requests</h2>
+<table border="1">
+  <tr>
+    <th>Location</th><th>Vehicle</th><th>Complaint</th><th>Customer</th><th>Status</th><th>Actions</th>
+  </tr>
+  {% for r in requests %}
+  <tr>
+    <td>{{ r[1] }}</td>
+    <td>{{ r[2] }}</td>
+    <td>{{ r[3] }}</td>
+    <td>{{ r[4] }} {{ r[5] }}</td>
+    <td>{{ r[6] }}</td>
+    <td>
+      {% if r[6] == 'Pending' %}
+        <form method="post" action="{{ url_for('update_request_status', request_id=r[0], new_status='Accepted') }}" style="display:inline;">
+            <button type="submit">Accept</button>
+        </form>
+        <form method="post" action="{{ url_for('update_request_status', request_id=r[0], new_status='Rejected') }}" style="display:inline;">
+            <button type="submit">Reject</button>
+        </form>
+      {% else %}
+        {{ r[6] }}
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

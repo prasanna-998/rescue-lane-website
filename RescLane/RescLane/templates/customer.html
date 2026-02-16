@@ -1,0 +1,249 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Rescue Lane
+    </title>
+    
+    <style>
+        
+        *{
+    text-decoration:none;
+}
+.navbar{
+    background: blueviolet;font-family: calibri;padding-left: 15px;padding-right: 15px;
+}
+.navdiv{
+    display: flex;align-items: center;justify-content: space-between;
+}
+.logo{
+    font-size: 35px;font-weight: 600;color: white;
+}
+li{
+    list-style: none;display: inline-block;
+}
+li a{
+    color: white; font-size: 18px;font-weight: bold;margin-right: 25px;
+}
+li a:hover{
+    color:gray;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background: url("{{ url_for('static', filename='breakdown_wallpaper.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    color: #000;
+   
+}
+.b{
+  
+    
+    border: none;
+    cursor: pointer;
+    background-color:  rgba(255, 255, 255, 0.5);;
+    color: none;
+    
+    backdrop-filter: blur(10px);
+}
+#signup
+{
+    height: 700px;
+}
+.loginbox{
+    width: 330px;
+    height:450px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color:black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing:border-box ;
+    padding: 70px 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* blur the background */
+
+}
+
+.images2{
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.loginbox input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginbox input[type="text"], input[type="password"], input[type="email"]
+{
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #000;
+    font-size: 16px;
+}
+.btn{
+    border:none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.btn:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+.loginbox input[type="submit"]
+{
+    border:none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.loginbox input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+.logo{
+    font-style: italic;
+    font-family: al;
+}
+
+    </style>
+     <script>
+        function toggleForms() {
+            document.getElementById("signup").style.display = "block";
+            document.getElementById("signin").style.display = "none";
+        }
+
+        function toggleBack() {
+            document.getElementById("signup").style.display = "none";
+            document.getElementById("signin").style.display = "block";
+        }
+
+        window.onload = () => {
+            document.getElementById("signInButton").onclick = toggleBack;
+        }
+    </script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">Rescue Lane
+            </div>
+            <ul>
+               <li> <a href="/home" >
+                    Home
+                   </a></li>
+                   <li><a  href="/customer" style="color: #FF0000; text-decoration: underline;">
+                    Customer
+                   </a></li>
+                   <li><a  href="/mechanic">
+                    Mechanics
+                   </a></li>
+                   <li><a  href="/About">
+                    About Us
+                   </a></li>
+                   <li><a  href="/contact"> Contact Us
+                </a></li>
+
+            </ul>
+        </div>
+    </nav>
+    
+    
+    <div class="loginbox" id="signup" style="display: none;">
+        <img src="{{ url_for('static', filename='images2.png') }}" class="images2">
+        <h1>Registration</h1>
+        <form method="post" action="{{ url_for('register') }}">
+            <p>First Name</p>
+            <input type="text" name="fname" placeholder="Enter First Name" required>
+            <p>Last Name</p>
+            <input type="text" name="lname" placeholder="Enter Last Name" >
+            <p>Favorite Animal </p>
+            <input type="text" name="animal" placeholder="Enter Animal Name"required>
+            <p>Email Id</p>
+            <input type="email" name="email" placeholder="Enter Email Id" required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="submit" value="Create"><br><br>
+            <button type="button" class="b" id="signInButton">Already have Account</button>
+            <p style="color:red";>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <ul>
+                      {% for category, message in messages %}
+                        <li  style="color: red";><strong>{{ category }}:</strong> {{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
+                </p>
+        </form>
+    </div>
+
+    <div class="loginbox" id="signin">
+        <img src="{{ url_for('static', filename='images2.png') }}" class="images2">
+        <h1>Login</h1>
+        <form method="post" action="{{ url_for('login') }}">
+            <p>Email Id</p>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="submit" value="Login"><br>
+            <br>
+            <button type="button" class="b" onclick="toggleForms()">Create Account</button>
+            <a href="/c_reset">Forget Password</a>
+            <p style="color:red";>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <ul>
+                      {% for category, message in messages %}
+                        <li  style="color: red";><strong>{{ category }}:</strong> {{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
+                </p>
+        </form>
+         
+             
+    </div>
+    
+</body>
+</html>
